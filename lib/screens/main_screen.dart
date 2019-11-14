@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/item.dart';
+import 'package:code/widgets/item.dart';
 
 class MainScreen extends StatelessWidget {
   int daysToChristmas = DateTime.utc(2019, 12, 24)

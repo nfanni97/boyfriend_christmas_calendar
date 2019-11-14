@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main_screen.dart';
+import 'screens/main_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           title: Theme.of(context).textTheme.title.copyWith(
                 fontFamily: 'The Perfect Christmas',
-                fontSize: 50,
+                fontSize: 40,
                 color: Colors.red.shade800,
               ),
         ),

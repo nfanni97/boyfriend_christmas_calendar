@@ -33,6 +33,7 @@ class _ItemState extends State<Item> {
   }
 
   void onTap() {
+    //TODO: rewrite so it loads from provider
     if(!_isOpened) {
       setState(() {
         _isOpened = true;
