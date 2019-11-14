@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
-  final int daysToChristmas =
-      DateTime.utc(2019, 12, 24).difference(DateTime.utc(2019, 12, 3)).inDays;
+  final int daysToChristmas = DateTime.utc(2019, 12, 24)
+      .difference(DateTime.utc(2019, 12, 23))
+      .inDays; //TODO: rewrite to DateTime.now()
   Map<int, String> suffixes = const {
     1: 'et',
     2: 't',
@@ -35,33 +36,55 @@ class MainScreen extends StatelessWidget {
   Widget buildAppBar(BuildContext context) {
     String suffix;
     // compute suffix
-    if (suffixes.keys.contains(daysToChristmas)) {
+    if (daysToChristmas == 0) {
+      suffix = '';
+    }
+    else if (suffixes.keys.contains(daysToChristmas)) {
       suffix = suffixes[daysToChristmas];
     } else {
       suffix = suffixes[daysToChristmas % 10];
     }
+    final appBarData = AppBarData(daysToChristmas == 0, daysToChristmas, suffix);
     return SliverAppBar(
-      //TODO: rewrite parameters for Galaxy J5
-      expandedHeight: 200,
+      expandedHeight: appBarData.fullHeight,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         titlePadding: EdgeInsets.only(bottom: 0),
         title: Text(
-          daysToChristmas == 0
-              ? 'Boldog karácsonyt!'
-              : 'Már csak $daysToChristmas-$suffix kell\n aludni karácsonyig!',
+          appBarData.title,
           style: Theme.of(context).textTheme.title,
-          maxLines: 2,
+          maxLines: appBarData.maxLines,
           textAlign: TextAlign.center,
         ),
         background:
             Placeholder(), //TODO: image with remaining days in big red letters
       ),
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(10.0),
-        child: Text(''),
-      ),
+      bottom: appBarData.bottom,
     );
+  }
+}
+
+//TODO: rewrite parameters for Galaxy J5
+class AppBarData {
+  double fullHeight;
+  String title;
+  int maxLines;
+  PreferredSize bottom;
+
+  AppBarData(bool isChristmas, [int daysToChristmas, String suffix]) {
+    fullHeight = 200;
+    if (isChristmas) {
+      title = 'Boldog karácsonyt!';
+      maxLines = 1;
+      bottom = null;
+    } else {
+      title = 'Már csak $daysToChristmas-$suffix kell\n aludni karácsonyig!';
+      maxLines = 2;
+      bottom = PreferredSize(
+        preferredSize: Size.fromHeight(25.0),
+        child: Text(''),
+      );
+    }
   }
 }
