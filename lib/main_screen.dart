@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/item.dart';
+
 class MainScreen extends StatelessWidget {
-  final int daysToChristmas = DateTime.utc(2019, 12, 24)
-      .difference(DateTime.utc(2019, 12, 23))
+  int daysToChristmas = DateTime.utc(2019, 12, 24)
+      .difference(DateTime.utc(2019, 12, 9))
       .inDays; //TODO: rewrite to DateTime.now()
   Map<int, String> suffixes = const {
     1: 'et',
@@ -26,10 +28,24 @@ class MainScreen extends StatelessWidget {
             buildAppBar(context),
           ];
         },
-        body: Center(
-          child: Text('Boldog karácsonyt'),
-        ),
+        body: buildBody(context),
       ),
+    );
+  }
+
+  Widget buildBody(BuildContext context) {
+    return GridView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
+      itemCount: 24,
+      itemBuilder: (context, i) {
+        return Item(false);
+      },
+      shrinkWrap: true,
     );
   }
 
@@ -38,13 +54,13 @@ class MainScreen extends StatelessWidget {
     // compute suffix
     if (daysToChristmas == 0) {
       suffix = '';
-    }
-    else if (suffixes.keys.contains(daysToChristmas)) {
+    } else if (suffixes.keys.contains(daysToChristmas)) {
       suffix = suffixes[daysToChristmas];
     } else {
       suffix = suffixes[daysToChristmas % 10];
     }
-    final appBarData = AppBarData(daysToChristmas == 0, daysToChristmas, suffix);
+    final appBarData =
+        AppBarData(daysToChristmas == 0, daysToChristmas, suffix);
     return SliverAppBar(
       expandedHeight: appBarData.fullHeight,
       pinned: true,
