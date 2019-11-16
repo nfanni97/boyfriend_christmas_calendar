@@ -12,6 +12,7 @@ class BaseSurpriseScreen extends StatelessWidget {
     return Scaffold(
       //TODO: snowy arrow as leading element?
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Dec. $day',
           style: Theme.of(context).textTheme.title,
