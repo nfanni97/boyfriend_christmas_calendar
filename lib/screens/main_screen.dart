@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:code/widgets/item.dart';
+import 'package:code/current_date.dart';
 
 class MainScreen extends StatelessWidget {
-  int daysToChristmas = DateTime.utc(2019, 12, 24)
-      .difference(DateTime.utc(2019, 12, 9))
-      .inDays; //TODO: rewrite to DateTime.now()
+  int daysToChristmas =
+      DateTime.utc(2019, 12, 24).difference(currentDate).inDays;
   Map<int, String> suffixes = const {
     1: 'et',
     2: 't',
