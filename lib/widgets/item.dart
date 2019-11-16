@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Item extends StatefulWidget {
-  final bool isOpened;
-  final int num;
+  final int id;
 
-  Item(this.isOpened, [this.num]);
+  Item(this.id);
 
   @override
   _ItemState createState() => _ItemState();
 }
 
 class _ItemState extends State<Item> {
-  bool _isOpened;
-  int _num;
 
   @override
   void initState() {
     super.initState();
-    _isOpened = widget.isOpened;
-    _num = widget.num;
   }
 
   @override
@@ -26,19 +21,13 @@ class _ItemState extends State<Item> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        color: _isOpened ? Colors.green : Colors.red,
-        child: Text(_num?.toString() ?? ''),
+        color: Colors.red,
       ),
     );
   }
 
   void onTap() {
     //TODO: rewrite so it loads from provider
-    if(!_isOpened) {
-      setState(() {
-        _isOpened = true;
-        _num = 5;
-      });
-    }
+    
   }
 }

@@ -43,7 +43,7 @@ class MainScreen extends StatelessWidget {
       ),
       itemCount: 24,
       itemBuilder: (context, i) {
-        return Item(false);
+        return Item(i);
       },
       shrinkWrap: true,
     );
@@ -64,6 +64,7 @@ class MainScreen extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: appBarData.fullHeight,
       pinned: true,
+      floating: false,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         titlePadding: EdgeInsets.only(bottom: 0),
