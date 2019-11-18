@@ -1,5 +1,9 @@
+import 'package:code/item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:code/bloc/bloc.dart';
+//TODO: FIGURE OUT HOW STREAMS WORK
 class Item extends StatefulWidget {
   final int id;
 
@@ -10,24 +14,47 @@ class Item extends StatefulWidget {
 }
 
 class _ItemState extends State<Item> {
+  bool _isInit = true;
+  Bloc _bloc;
+  ItemModel _data;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      _isInit = false;
+      _bloc = Provider.of<Bloc>(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        color: Colors.red,
-      ),
+    return StreamBuilder<ItemModel>(
+      stream: _bloc.itemParams,
+      builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting) {
+          _data = _bloc.allItems[widget.id-1];
+        }
+        else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
+            print('item ${widget.id} got data at ${DateTime.now()}');
+          _data = snapshot.data;
+        } else {
+          return Container(
+            color: Colors.purple,
+            width: 30,
+            height: 30,
+          );
+        }
+        return Container(
+          child: Text('${_data.itemId}'),
+          width: 30,
+          height: 30,
+        );
+      },
     );
   }
 
   void onTap() {
     //TODO: rewrite so it loads from provider
-    
   }
 }
