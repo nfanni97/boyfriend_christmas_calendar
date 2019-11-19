@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:code/bloc/bloc.dart';
-//TODO: FIGURE OUT HOW STREAMS WORK
 class Item extends StatefulWidget {
   final int id;
 
@@ -29,6 +28,7 @@ class _ItemState extends State<Item> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: UI, handle AlreadyOpenedException
     return StreamBuilder<ItemModel>(
       stream: _bloc.itemParams,
       builder: (context, snapshot) {
@@ -36,7 +36,6 @@ class _ItemState extends State<Item> {
           _data = _bloc.allItems[widget.id-1];
         }
         else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
-            print('item ${widget.id} got data at ${DateTime.now()}');
           _data = snapshot.data;
         } else {
           return Container(
@@ -54,7 +53,8 @@ class _ItemState extends State<Item> {
     );
   }
 
-  void onTap() {
-    //TODO: rewrite so it loads from provider
+  Future<void> onTap() async {
+    await _bloc.openItem(widget.id);
+    //TODO: open surprise screen
   }
 }

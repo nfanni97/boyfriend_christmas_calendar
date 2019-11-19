@@ -1,7 +1,10 @@
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:code/current_date.dart';
+import 'package:code/models/already_opened_exception.dart';
 import 'package:code/models/item_model.dart';
 
 class Provider {
@@ -15,6 +18,7 @@ class Provider {
     'opened_on': 'INTEGER',
     'surprise_id': 'INTEGER',
   };
+  static const _shared_pref_key = 'last_opened_on';
 
   Future<List<ItemModel>> getAllItems() async {
     List<Map<String,dynamic>> result = await _database.query(
@@ -26,6 +30,15 @@ class Provider {
   }
 
   Future<ItemModel> openItem(int itemId) async {
+    //check if already opened today:
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int lastOpened = prefs.getInt(_shared_pref_key);
+    int currentDay = currentDate.day;
+    if(lastOpened == currentDay) {
+      throw AlreadyOpenedException();
+    }
+    prefs.setInt(_shared_pref_key, currentDay);
+    //TODO: check if extraordinary day -> get appropriate surprise id -> update database (opened, opened on, surprise_id)
     List<Map<String,dynamic>> result = await _database.query(
       _table_name,
       columns: _columns.keys.toList(),
@@ -63,5 +76,9 @@ class Provider {
       await db.insert(_table_name, row);
     }
     print('Database created');
+
+    //set last opened on variable in SharedPref
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_shared_pref_key, 0);
   }
 }
