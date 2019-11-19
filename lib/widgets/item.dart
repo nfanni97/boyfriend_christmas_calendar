@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:code/bloc/bloc.dart';
+import 'package:code/models/already_opened_exception.dart';
 
 class Item extends StatefulWidget {
   final int id;
@@ -29,7 +30,6 @@ class _ItemState extends State<Item> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: UI, handle AlreadyOpenedException
     return StreamBuilder<ItemModel>(
       stream: _bloc.itemParams,
       builder: (context, snapshot) {
@@ -37,6 +37,9 @@ class _ItemState extends State<Item> {
           _data = _bloc.allItems[widget.id - 1];
         } else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
           _data = snapshot.data;
+        } else if (snapshot.hasError && snapshot.error is AlreadyOpenedException && (snapshot.error as AlreadyOpenedException).itemId == widget.id) {
+          //TODO: how to handle error?
+          print('already opened today');
         }
         return InkWell(
           onTap: onTap,

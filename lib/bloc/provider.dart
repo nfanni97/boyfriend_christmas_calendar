@@ -35,7 +35,7 @@ class Provider {
     int lastOpened = prefs.getInt(_shared_pref_key);
     int currentDay = currentDate.day;
     if (lastOpened == currentDay) {
-      throw AlreadyOpenedException();
+      throw AlreadyOpenedException(itemId);
     }
     prefs.setInt(_shared_pref_key, currentDay);
     //update opened item
