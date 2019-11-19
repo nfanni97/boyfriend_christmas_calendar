@@ -2,6 +2,7 @@ import 'package:rxdart/rxdart.dart';
 
 import 'package:code/item_model.dart';
 import 'package:code/bloc/repository.dart';
+import 'package:code/models/item_model.dart';
 
 class Bloc {
   final _repo = Repository();
@@ -15,8 +16,12 @@ class Bloc {
   }
 
   Future<void> openItem(int itemId) async {
+    try {
     ItemModel itemData = await _repo.openItem(itemId);
     _itemSubject.sink.add(itemData);
+    } on AlreadyOpenedException catch(e) {
+      _itemSubject.sink.addError(e);
+    }
   }
 
   Future<void> initDatabase() => _repo.initDatabase();

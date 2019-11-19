@@ -1,4 +1,4 @@
-import 'package:code/item_model.dart';
+import 'package:code/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,4 +1,4 @@
-import 'package:code/item_model.dart';
+import 'package:code/models/item_model.dart';
 import 'package:code/bloc/provider.dart';
 
 class Repository {

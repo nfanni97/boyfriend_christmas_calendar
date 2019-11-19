@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:code/item_model.dart';
+import 'package:code/models/item_model.dart';
 
 class Provider {
   static const _db_name = 'xmas_calendar.db';
