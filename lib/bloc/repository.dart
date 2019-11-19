@@ -6,6 +6,12 @@ class Repository {
   List<ItemModel> allItems;
 
   Future<void> getAllItems() async => allItems = await _provider.getAllItems();
-  Future<ItemModel> openItem(int itemId) => _provider.openItem(itemId);
+  Future<ItemModel> openItem(int itemId) async {
+    final opened = await _provider.openItem(itemId);
+    //update allItems
+    allItems[itemId] = opened;
+    return opened;
+  }
+
   Future<void> initDatabase() => _provider.initDatabase();
 }

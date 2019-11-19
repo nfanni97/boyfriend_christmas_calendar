@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:code/bloc/bloc.dart';
+
 class Item extends StatefulWidget {
   final int id;
 
@@ -32,29 +33,28 @@ class _ItemState extends State<Item> {
     return StreamBuilder<ItemModel>(
       stream: _bloc.itemParams,
       builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting) {
-          _data = _bloc.allItems[widget.id-1];
-        }
-        else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          _data = _bloc.allItems[widget.id - 1];
+        } else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
           _data = snapshot.data;
-        } else {
-          return Container(
-            color: Colors.purple,
+        }
+        return InkWell(
+          onTap: onTap,
+          child: Container(
+            child: Text('${_data.surpriseId ?? '-'}'),
+            color: _data.isOpened ? Colors.green : Colors.red,
             width: 30,
             height: 30,
-          );
-        }
-        return Container(
-          child: Text('${_data.itemId}'),
-          width: 30,
-          height: 30,
+          ),
         );
       },
     );
   }
 
   Future<void> onTap() async {
-    await _bloc.openItem(widget.id);
-    //TODO: open surprise screen
+    if (!_data.isOpened) {
+      await _bloc.openItem(widget.id);
+    }
+    //TODO: open appropriate content
   }
 }

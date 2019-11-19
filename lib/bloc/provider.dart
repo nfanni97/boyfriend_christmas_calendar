@@ -21,7 +21,7 @@ class Provider {
   static const _shared_pref_key = 'last_opened_on';
 
   Future<List<ItemModel>> getAllItems() async {
-    List<Map<String,dynamic>> result = await _database.query(
+    List<Map<String, dynamic>> result = await _database.query(
       _table_name,
     );
     var toReturn = List<ItemModel>();
@@ -34,18 +34,24 @@ class Provider {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int lastOpened = prefs.getInt(_shared_pref_key);
     int currentDay = currentDate.day;
-    if(lastOpened == currentDay) {
+    if (lastOpened == currentDay) {
       throw AlreadyOpenedException();
     }
     prefs.setInt(_shared_pref_key, currentDay);
-    //TODO: check if extraordinary day -> get appropriate surprise id -> update database (opened, opened on, surprise_id)
-    List<Map<String,dynamic>> result = await _database.query(
+    //update opened item
+    final updated = {
+      'item_id': itemId,
+      'is_opened': 1,
+      'opened_on': currentDay,
+      'surprise_id': currentDay,
+    };
+    await _database.update(
       _table_name,
-      columns: _columns.keys.toList(),
+      updated,
       where: 'item_id = ?',
       whereArgs: [itemId],
     );
-    return ItemModel.fromMap(result.first);
+    return ItemModel.fromMap(updated);
   }
 
   Future<void> initDatabase() async {
