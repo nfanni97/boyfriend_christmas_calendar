@@ -4,9 +4,37 @@ import 'package:provider/provider.dart';
 
 import 'package:code/bloc/bloc.dart';
 import 'package:code/models/already_opened_exception.dart';
+import 'package:code/screens/base_surprise_screen.dart';
+import 'package:code/widgets/days/all_days.dart';
 
 class Item extends StatefulWidget {
   final int id;
+  static const days = {
+    'day_1': Day1(),
+    'day_2': Day2(),
+    'day_3': Day3(),
+    'day_4': Day4(),
+    'day_5': Day5(),
+    'day_6': Day6(),
+    'day_7': Day7(),
+    'day_8': Day8(),
+    'day_9': Day9(),
+    'day_10': Day10(),
+    'day_11': Day11(),
+    'day_12': Day12(),
+    'day_13': Day13(),
+    'day_14': Day14(),
+    'day_15': Day15(),
+    'day_16': Day16(),
+    'day_17': Day17(),
+    'day_18': Day18(),
+    'day_19': Day19(),
+    'day_20': Day20(),
+    'day_21': Day21(),
+    'day_22': Day22(),
+    'day_23': Day23(),
+    'day_24': Day24(),
+  };
 
   Item(this.id);
 
@@ -37,7 +65,9 @@ class _ItemState extends State<Item> {
           _data = _bloc.allItems[widget.id - 1];
         } else if (snapshot.hasData && snapshot.data.itemId == widget.id) {
           _data = snapshot.data;
-        } else if (snapshot.hasError && snapshot.error is AlreadyOpenedException && (snapshot.error as AlreadyOpenedException).itemId == widget.id) {
+        } else if (snapshot.hasError &&
+            snapshot.error is AlreadyOpenedException &&
+            (snapshot.error as AlreadyOpenedException).itemId == widget.id) {
           //TODO: how to handle error?
           print('already opened today');
         }
@@ -54,10 +84,35 @@ class _ItemState extends State<Item> {
     );
   }
 
+  /* void showError(String msg) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext c) => AlertDialog(
+        title: Text('Hoppá, hiba a mátrixban'),
+        content: Text(msg),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Hát jó...'),
+            onPressed: () => Navigator.of(c).pop(),
+          )
+        ],
+      ),
+    );
+  } */
+
   Future<void> onTap() async {
     if (!_data.isOpened) {
       await _bloc.openItem(widget.id);
     }
-    //TODO: open appropriate content
+    if (_data.isOpened) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => BaseSurpriseScreen(
+            day: _data.openedOn,
+            content: Item.days['day_${_data.openedOn}'],
+          ),
+        ),
+      );
+    }
   }
 }
