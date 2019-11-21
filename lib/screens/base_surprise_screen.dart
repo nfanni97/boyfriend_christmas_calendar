@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BaseSurpriseScreen extends StatelessWidget {
-  final int id;
   final int day;
   final Widget content;
 
-  BaseSurpriseScreen({@required this.id,@required this.day,@required this.content});
+  BaseSurpriseScreen({@required this.day,@required this.content});
 
   @override
   Widget build(BuildContext context) {

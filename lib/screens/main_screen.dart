@@ -4,9 +4,9 @@ import 'package:code/widgets/item.dart';
 import 'package:code/current_date.dart';
 
 class MainScreen extends StatelessWidget {
-  int daysToChristmas =
+  final int daysToChristmas =
       DateTime.utc(2019, 12, 24).difference(currentDate).inDays;
-  Map<int, String> suffixes = const {
+  final Map<int, String> suffixes = {
     1: 'et',
     2: 't',
     3: 'at',
@@ -34,18 +34,15 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+    return Stack(
+      children: List.generate(
+        24,
+        (id) => Positioned(
+          top: id * 20.0,
+          left: id * 10.0,
+          child: Item(id + 1),
+        ),
       ),
-      itemCount: 24,
-      itemBuilder: (context, i) {
-        return Item(i);
-      },
-      shrinkWrap: true,
     );
   }
 
