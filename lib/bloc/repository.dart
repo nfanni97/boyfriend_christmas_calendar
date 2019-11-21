@@ -9,7 +9,7 @@ class Repository {
   Future<ItemModel> openItem(int itemId) async {
     final opened = await _provider.openItem(itemId);
     //update allItems
-    allItems[itemId] = opened;
+    allItems[itemId-1] = opened;
     return opened;
   }
 
