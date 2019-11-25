@@ -34,6 +34,10 @@ class _MyAppState extends State<MyApp> {
                   fontSize: 40,
                   color: Colors.red.shade800,
                 ),
+            body1: Theme.of(context).textTheme.body1.copyWith(
+              fontFamily: 'Cursive Standard',
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         home: SplashScreen(),

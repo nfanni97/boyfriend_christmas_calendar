@@ -29,10 +29,6 @@ class Day1 extends StatelessWidget {
     return Text(
       first,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Cursive Standard',
-        fontWeight: FontWeight.bold,
-      ),
     );
   }
 }
