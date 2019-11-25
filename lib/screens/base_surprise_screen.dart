@@ -13,7 +13,7 @@ class BaseSurpriseScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Dec. $day',
+          'December $day',
           style: Theme.of(context).textTheme.title,
         ),
       ),
