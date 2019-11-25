@@ -77,6 +77,9 @@ flutter:
     - family: The Perfect Christmas
       fonts:
         - asset: assets/fonts/The_Perfect_Christmas.ttf
+    - family: Cursive Standard
+      fonts:
+        - asset: assets/fonts/Cursive_Standard.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
