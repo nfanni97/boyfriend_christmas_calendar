@@ -56,6 +56,7 @@ flutter:
     - assets/imgs/day_03.jpg
     - assets/imgs/day_04.png
     - assets/imgs/day_06.png
+    - assets/imgs/day_07.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
