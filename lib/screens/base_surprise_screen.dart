@@ -17,7 +17,24 @@ class BaseSurpriseScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.title,
         ),
       ),
-      body: content,
+      body: Stack(
+        children: <Widget>[
+          //TODO: put bells or something here
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Icon(Icons.event),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Icon(Icons.event),
+          ),
+          Center(
+            child: content,
+          ),
+        ],
+      ),
     );
   }
 }
