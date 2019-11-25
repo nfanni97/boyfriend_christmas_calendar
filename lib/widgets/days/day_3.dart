@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 class Day3 extends StatelessWidget {
   const Day3();
-  static const intro = '''
-Movie night!
-Annyit meséltél róla, biztos jó :)
-''';
+  static const intro = '''Movie night!
+Annyit meséltél róla, biztos jó :)''';
   @override
   Widget build(BuildContext context) {
     return Column(
