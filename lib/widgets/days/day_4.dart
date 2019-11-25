@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 class Day4 extends StatelessWidget {
   const Day4();
   static const text = '''
-Hali! Ma egy kis nasit kapsz: gyere át érte ;)
-P.S.: holnap estére ne csinálj programot ;)
+Ma kapod az egyik legnagyobb meglepetést: egy joker kívánságot.
+Haználd fel bölcsen és lelkiismeretesen! ;)
 ''';
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.body1.copyWith(fontSize: 30),
-      ),
+    return Column(
+      children: <Widget>[
+        Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
+        Image.asset(
+          'assets/imgs/day_04.png',
+          height: MediaQuery.of(context).size.height * 0.7,
+        ),
+      ],
     );
   }
 }
