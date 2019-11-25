@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
             body1: Theme.of(context).textTheme.body1.copyWith(
               fontFamily: 'Cursive Standard',
               fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
           ),
         ),
