@@ -45,13 +45,16 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
         RaisedButton(
           child: Icon(
               _controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
-          onPressed: () => setState(() {
-            if (_controller.value.isPlaying) {
-              _controller.pause();
-            } else {
-              _controller.play();
-            }
-          }),
+          onPressed: () => setState(
+            () {
+              if (_controller.value.isPlaying) {
+                _controller.pause();
+              } else {
+                _controller.play();
+              }
+            },
+          ),
+          color: Colors.green,
         ),
       ],
     );
