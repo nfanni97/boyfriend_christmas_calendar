@@ -19,28 +19,137 @@ class MainScreen extends StatelessWidget {
     10: 'et',
     20: 'at'
   };
+  final List<_Position> pos = [
+    _Position(
+      left: 150,
+      top: 60,
+    ),
+    _Position(
+      left: 160,
+      top: 160,
+    ),
+    _Position(
+      left: 130,
+      top: 220,
+    ),
+    _Position(
+      left: 180,
+      top: 300,
+    ),
+    _Position(
+      left: 100,
+      top: 350,
+    ),
+    _Position(
+      left: 250,
+      top: 410,
+    ),
+    _Position(
+      left: 170,
+      top: 440,
+    ),
+    _Position(
+      left: 85,
+      top: 450,
+    ),
+    _Position(
+      left: 160,
+      top: 520,
+    ),
+    _Position(
+      left: 40,
+      top: 550,
+    ),
+    _Position(
+      left: 260,
+      top: 600,
+    ),
+    _Position(
+      left: 200,
+      top: 660,
+    ),
+    _Position(
+      left: 110,
+      top: 640,
+    ),
+    _Position(
+      left: 80,
+      top: 710,
+    ),
+    _Position(
+      left: 200,
+      top: 800,
+    ),
+    _Position(
+      left: 50,
+      top: 820,
+    ),
+    _Position(
+      left: 140,
+      top: 860,
+    ),
+    _Position(
+      left: 250,
+      top: 900,
+    ),
+    _Position(
+      left: 10,
+      top: 940,
+    ),
+    _Position(
+      left: 100,
+      top: 1000,
+    ),
+    _Position(
+      left: 280,
+      top: 1150,
+    ),
+    _Position(
+      left: 190,
+      top: 1050,
+    ),
+    _Position(
+      left: 70,
+      top: 1110,
+    ),
+    _Position(
+      left: 150,
+      top: 1200,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            buildAppBar(context),
-          ];
-        },
-        body: buildBody(context),
-      ),
+      appBar: buildAppBar(context),
+      body: buildBody(context),
     );
   }
 
   Widget buildBody(BuildContext context) {
-    return Stack(
-      children: List.generate(
-        24,
-        (id) => Positioned(
-          top: id * 20.0,
-          left: id * 10.0,
-          child: Item(id + 1),
+    print(pos.length);
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Image.asset(
+                'assets/imgs/christmas_tree.png',
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fitHeight,
+              ),
+              ...List.generate(
+                pos.length,
+                (id) => Positioned(
+                  child: Item(id + 1),
+                  top: pos[id].top,
+                  left: pos[id].left,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -57,48 +166,48 @@ class MainScreen extends StatelessWidget {
       suffix = suffixes[daysToChristmas % 10];
     }
     final appBarData =
-        AppBarData(daysToChristmas == 0, daysToChristmas, suffix);
-    return SliverAppBar(
-      expandedHeight: appBarData.fullHeight,
-      pinned: true,
-      floating: false,
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-        titlePadding: EdgeInsets.only(bottom: 0),
-        title: Text(
-          appBarData.title,
-          style: Theme.of(context).textTheme.title,
-          maxLines: appBarData.maxLines,
-          textAlign: TextAlign.center,
+        _AppBarData(daysToChristmas == 0, daysToChristmas, suffix);
+    return PreferredSize(
+      preferredSize: Size.fromHeight(100),
+      child: AppBar(
+        flexibleSpace: Padding(
+          padding: appBarData.padding,
+          child: Text(
+            appBarData.title,
+            style: Theme.of(context).textTheme.title,
+            maxLines: appBarData.maxLines,
+            textAlign: TextAlign.center,
+          ),
         ),
-        background:
-            Placeholder(), //TODO: image with remaining days in big red letters
       ),
-      bottom: appBarData.bottom,
     );
   }
 }
 
 //TODO: rewrite parameters for Galaxy J5
-class AppBarData {
+class _AppBarData {
   double fullHeight;
   String title;
   int maxLines;
-  PreferredSize bottom;
+  EdgeInsets padding;
 
-  AppBarData(bool isChristmas, [int daysToChristmas, String suffix]) {
+  _AppBarData(bool isChristmas, [int daysToChristmas, String suffix]) {
     fullHeight = 200;
     if (isChristmas) {
       title = 'Boldog karácsonyt!';
       maxLines = 1;
-      bottom = null;
+      padding = EdgeInsets.only(top: 50);
     } else {
       title = 'Már csak $daysToChristmas-$suffix kell\n aludni karácsonyig!';
       maxLines = 2;
-      bottom = PreferredSize(
-        preferredSize: Size.fromHeight(25.0),
-        child: Text(''),
-      );
+      padding = EdgeInsets.only(top: 30);
     }
   }
+}
+
+class _Position {
+  final double top;
+  final double left;
+
+  _Position({@required this.top, @required this.left});
 }

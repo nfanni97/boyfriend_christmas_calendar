@@ -71,13 +71,32 @@ class _ItemState extends State<Item> {
           //TODO: how to handle error?
           print('already opened today');
         }
+        String ornamentColor;
+        if (_data.isOpened == null || !_data.isOpened) {
+          ornamentColor = 'base';
+        } else if (_data.openedOn % 2 == 0) {
+          ornamentColor = 'gold';
+        } else {
+          ornamentColor = 'red';
+        }
         return InkWell(
           onTap: onTap,
           child: Container(
-            child: Text('${_data.surpriseId ?? '-'}'),
-            color: _data.isOpened ? Colors.green : Colors.red,
-            width: 30,
-            height: 30,
+            padding: EdgeInsets.only(top: 17),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/imgs/ornament_' + ornamentColor + '.png'),
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            child: Text(
+              '${_data.surpriseId ?? '-'}',
+              textAlign: TextAlign.center,
+            ),
+            alignment: Alignment.center,
+            width: 40,
+            height: 50,
           ),
         );
       },
