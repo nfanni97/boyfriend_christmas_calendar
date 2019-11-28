@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class BaseSurpriseScreen extends StatelessWidget {
   final int day;
   final Widget content;
+  final bellPadding = 10.0;
+  final bellSize = 25.0;
 
-  BaseSurpriseScreen({@required this.day,@required this.content});
+  BaseSurpriseScreen({@required this.day, @required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +24,54 @@ class BaseSurpriseScreen extends StatelessWidget {
         children: <Widget>[
           //TODO: put bells or something here
           Positioned(
-            top: 0,
-            left: 0,
-            child: Icon(Icons.event),
+            top: bellPadding,
+            left: bellPadding,
+            child: buildBell(isleft: true, istop: true),
           ),
           Positioned(
-            top: 0,
-            right: 0,
-            child: Icon(Icons.event),
+            top: bellPadding,
+            right: bellPadding,
+            child: buildBell(isleft: false, istop: true),
+          ),
+          Positioned(
+            bottom: bellPadding,
+            right: bellPadding,
+            child: buildBell(isleft: false, istop: false),
+          ),
+          Positioned(
+            bottom: bellPadding,
+            left: bellPadding,
+            child: buildBell(isleft: true, istop: false),
           ),
           Center(
             child: content,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildBell({@required bool isleft, @required bool istop}) {
+    int turns;
+    if (isleft) {
+      if (istop) {
+        turns = 3;
+      } else {
+        turns = 2;
+      }
+    } else {
+      if (istop) {
+        turns = 0;
+      } else {
+        turns = 1;
+      }
+    }
+    return RotatedBox(
+      quarterTurns: turns,
+      child: Image.asset(
+        'assets/imgs/bell.png',
+        height: bellSize,
+        width: bellSize,
       ),
     );
   }
