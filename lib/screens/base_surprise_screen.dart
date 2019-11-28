@@ -10,6 +10,7 @@ class BaseSurpriseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: snowy arrow as leading element?
+      //TODO: add singlechildscrollview here, remove from everywhere else
       appBar: AppBar(
         centerTitle: true,
         title: Text(
