@@ -34,7 +34,8 @@ class _Day11State extends State<Day11> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.all(35.0),
       child: _isStoryShowing ? buildStory(context) : buildIntro(),
     );
   }

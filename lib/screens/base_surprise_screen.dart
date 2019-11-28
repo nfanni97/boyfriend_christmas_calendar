@@ -12,7 +12,6 @@ class BaseSurpriseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: snowy arrow as leading element?
-      //TODO: add singlechildscrollview here, remove from everywhere else
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -22,7 +21,6 @@ class BaseSurpriseScreen extends StatelessWidget {
       ),
       body: Stack(
         children: <Widget>[
-          //TODO: put bells or something here
           Positioned(
             top: bellPadding,
             left: bellPadding,
@@ -44,7 +42,7 @@ class BaseSurpriseScreen extends StatelessWidget {
             child: buildBell(isleft: true, istop: false),
           ),
           Center(
-            child: content,
+            child: SingleChildScrollView(child: content),
           ),
         ],
       ),

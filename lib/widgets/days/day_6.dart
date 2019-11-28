@@ -12,23 +12,21 @@ Tündérország még csak árnya e világnak.\"
 ''';
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Text(
-            intro,
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            hint,
-            textAlign: TextAlign.center,
-          ),
-          Image.asset(
-            'assets/imgs/day_06.png',
-            height: MediaQuery.of(context).size.height * 0.5,
-          ),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        Text(
+          intro,
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          hint,
+          textAlign: TextAlign.center,
+        ),
+        Image.asset(
+          'assets/imgs/day_06.png',
+          height: MediaQuery.of(context).size.height * 0.5,
+        ),
+      ],
     );
   }
 }

@@ -5,7 +5,7 @@ class Day20 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(35.0),
       child: Center(
         child: FutureBuilder(
           future: DefaultAssetBundle.of(context)
