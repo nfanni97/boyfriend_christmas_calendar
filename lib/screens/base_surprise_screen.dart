@@ -11,7 +11,6 @@ class BaseSurpriseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: snowy arrow as leading element?
       appBar: AppBar(
         centerTitle: true,
         title: Text(

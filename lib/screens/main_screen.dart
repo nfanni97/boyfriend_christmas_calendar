@@ -21,7 +21,7 @@ class MainScreen extends StatelessWidget {
   };
   final List<_Position> pos = [
     _Position(
-      left: 150,
+      left: 130,
       top: 60,
     ),
     _Position(
@@ -37,12 +37,12 @@ class MainScreen extends StatelessWidget {
       top: 300,
     ),
     _Position(
-      left: 100,
+      left: 80,
       top: 350,
     ),
     _Position(
-      left: 250,
-      top: 410,
+      left: 220,
+      top: 380,
     ),
     _Position(
       left: 170,
@@ -61,16 +61,16 @@ class MainScreen extends StatelessWidget {
       top: 550,
     ),
     _Position(
-      left: 260,
+      left: 215,
       top: 600,
     ),
     _Position(
-      left: 200,
+      left: 180,
       top: 660,
     ),
     _Position(
       left: 110,
-      top: 640,
+      top: 620,
     ),
     _Position(
       left: 80,
@@ -78,7 +78,7 @@ class MainScreen extends StatelessWidget {
     ),
     _Position(
       left: 200,
-      top: 800,
+      top: 750,
     ),
     _Position(
       left: 50,
@@ -86,7 +86,7 @@ class MainScreen extends StatelessWidget {
     ),
     _Position(
       left: 140,
-      top: 860,
+      top: 830,
     ),
     _Position(
       left: 250,
@@ -97,12 +97,12 @@ class MainScreen extends StatelessWidget {
       top: 940,
     ),
     _Position(
-      left: 100,
-      top: 1000,
+      left: 120,
+      top: 950,
     ),
     _Position(
-      left: 280,
-      top: 1150,
+      left: 260,
+      top: 1120,
     ),
     _Position(
       left: 190,
@@ -110,11 +110,11 @@ class MainScreen extends StatelessWidget {
     ),
     _Position(
       left: 70,
-      top: 1110,
+      top: 1020,
     ),
     _Position(
       left: 150,
-      top: 1200,
+      top: 1120,
     ),
   ];
   @override
@@ -126,29 +126,30 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    print(pos.length);
     return SingleChildScrollView(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/imgs/christmas_tree.png',
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.fitHeight,
-              ),
-              ...List.generate(
-                pos.length,
-                (id) => Positioned(
-                  child: Item(id + 1),
-                  top: pos[id].top,
-                  left: pos[id].left,
+      child: Center(
+        child: SizedBox(
+          width: 320,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/imgs/christmas_tree.png',
+                  width: 320,
+                  fit: BoxFit.fitHeight,
                 ),
-              ),
-            ],
+                ...List.generate(
+                  pos.length,
+                  (id) => Positioned(
+                    child: Item(id + 1),
+                    top: pos[id].top,
+                    left: pos[id].left,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

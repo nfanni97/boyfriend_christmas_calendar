@@ -1,4 +1,3 @@
-//TODO: initDatabase on splash screen, then move to main_screen
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

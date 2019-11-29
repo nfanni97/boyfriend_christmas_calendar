@@ -68,7 +68,6 @@ class _ItemState extends State<Item> {
         } else if (snapshot.hasError &&
             snapshot.error is AlreadyOpenedException &&
             (snapshot.error as AlreadyOpenedException).itemId == widget.id) {
-          //TODO: how to handle error?
           print('already opened today');
         }
         String ornamentColor;
