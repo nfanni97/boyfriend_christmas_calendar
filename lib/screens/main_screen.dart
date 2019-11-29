@@ -185,7 +185,6 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-//TODO: rewrite parameters for Galaxy J5
 class _AppBarData {
   double fullHeight;
   String title;
