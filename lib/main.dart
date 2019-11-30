@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     return Provider.value(
       value: _bloc,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Xmas Calendar',
         theme: ThemeData(
           primarySwatch: Colors.green,
           textTheme: TextTheme(
