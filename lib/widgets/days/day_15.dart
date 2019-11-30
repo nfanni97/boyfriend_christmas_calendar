@@ -10,7 +10,10 @@ P.S.: este gyere átvenni a meglepit ;)''';
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 35.0,
+          ),
           child: Text(
             intro,
             textAlign: TextAlign.center,
@@ -18,7 +21,7 @@ P.S.: este gyere átvenni a meglepit ;)''';
         ),
         Image.asset(
           'assets/imgs/day_15.jpg',
-          height: MediaQuery.of(context).size.height * 0.45,
+          height: MediaQuery.of(context).size.height * 0.43,
         ),
       ],
     );

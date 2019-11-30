@@ -26,28 +26,26 @@ class _Day9State extends State<Day9> {
   }
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Text(
-            Day9.intro,
-            textAlign: TextAlign.center,
+    return Column(
+      children: <Widget>[
+        Text(
+          Day9.intro,
+          textAlign: TextAlign.center,
+        ),
+        AnimatedOpacity(
+          child: Text(Day9.gotcha),
+          opacity: _isGotchaVisible ? 1.0 : 0.0,
+          duration: Duration(seconds: 1),
+        ),
+        AnimatedOpacity(
+          child: Image.asset(
+            'assets/imgs/day_09.png',
+            height: MediaQuery.of(context).size.height * 0.6,
           ),
-          AnimatedOpacity(
-            child: Text(Day9.gotcha),
-            opacity: _isGotchaVisible ? 1.0 : 0.0,
-            duration: Duration(seconds: 1),
-          ),
-          AnimatedOpacity(
-            child: Image.asset(
-              'assets/imgs/day_09.png',
-              height: MediaQuery.of(context).size.height * 0.6,
-            ),
-            opacity: _isRoseVisible ? 1.0 : 0.0,
-            duration: Duration(seconds: 1),
-          ),
-        ],
-      ),
+          opacity: _isRoseVisible ? 1.0 : 0.0,
+          duration: Duration(seconds: 1),
+        ),
+      ],
     );
   }
 }

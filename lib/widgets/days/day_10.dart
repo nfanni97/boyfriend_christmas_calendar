@@ -8,10 +8,13 @@ Gyere átvenni a mai apróságot!''';
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.body1.copyWith(fontSize: 40),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.body1.copyWith(fontSize: 30),
+        ),
       ),
     );
   }

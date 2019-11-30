@@ -8,17 +8,23 @@ meeeert a mai meglepetés egy
 SZÖRNYEN JÓ hátmasszázs ;)''';
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(
-          intro,
-          textAlign: TextAlign.center,
-        ),
-        Image.asset(
-          'assets/imgs/day_07.png',
-          height: MediaQuery.of(context).size.height * 0.6,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+        horizontal: 35.0,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            intro,
+            textAlign: TextAlign.center,
+          ),
+          Image.asset(
+            'assets/imgs/day_07.png',
+            height: MediaQuery.of(context).size.height * 0.5,
+          ),
+        ],
+      ),
     );
   }
 }

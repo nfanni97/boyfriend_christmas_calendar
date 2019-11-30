@@ -27,14 +27,18 @@ class _Day11State extends State<Day11> {
   @override
   void dispose() {
     super.dispose();
-    if(_timer.isActive) {
+    if (_timer.isActive) {
       _timer.cancel();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 40.0,
+        vertical: 8.0,
+      ),
       child: _isStoryShowing ? buildStory(context) : buildIntro(),
     );
   }
