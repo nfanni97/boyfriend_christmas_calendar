@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Word {
   final String word;
   final int solution;
