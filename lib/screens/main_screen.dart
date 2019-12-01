@@ -5,7 +5,11 @@ import 'package:code/current_date.dart';
 
 class MainScreen extends StatelessWidget {
   final int daysToChristmas =
-      DateTime.utc(2019, 12, 24).difference(currentDate).inDays;
+      DateTime.utc(2019, 12, 24).difference(currentDate).inDays + 1;
+  MainScreen() {
+    print(daysToChristmas);
+    print(DateTime.now());
+  }
   final Map<int, String> suffixes = {
     1: 'et',
     2: 't',
