@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class Day1 extends StatelessWidget {
   const Day1();
-  //TODO: edit font to have ő and í
   static const first = '''Először is, mivel költő nem vagyok
 Kérlek nézd el nekem, hogy rímeim...rosszak.
 
